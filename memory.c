@@ -28,8 +28,8 @@ void display(struct node** h)
 
    while(n!=NULL)
    {
-    printf("%d\n",n.val);
-    n = n.next;
+    printf("%d\n",n->val);
+    n = n->next;
    }
  }
 
@@ -39,19 +39,19 @@ void add_node(int *i,struct node** h, struct node** e)
     printf("adding\n");
     if(*h!=NULL)
     {
-        node *n = (struct node*)malloc(sizeof(node));
-        n.next  = NULL;
-        n.val = i;
+        struct node *n = (struct node*)malloc(sizeof(node));
+        n->next  = NULL;
+        n->val = i;
 
-        (*e).next = n;
+        (*e)->next = n;
         *e = n;
     }
     else
     {
         printf("heading\n");
-        *h  = (struct node*)malloc(sizeof(node));
-        (*h).next = NULL;
-        (*h).val = i;
+        struct *h  = (struct node*)malloc(sizeof(node));
+        (*h)->next = NULL;
+        (*h)->val = i;
         *e = *h;
     }
 
@@ -84,31 +84,31 @@ void myfree(void *ptr)
 void *mymalloc(size_t size, struct node** head, struct node** endnode)
 {
     if(size<=16){
-        add_node(alloc_from_ram(size),head,endnode);
+        add_node(alloc_from_ram(size),&head,&endnode);
     }
     else if(size>16 && size<=32){
-        add_node(alloc_from_ram(size),head,endnode);
+        add_node(alloc_from_ram(size),&head,&endnode);
     }
     else if(size>32 && size<=64){
-        add_node(alloc_from_ram(size),head,endnode);
+        add_node(alloc_from_ram(size),&head,&endnode);
     }
     else if(size>64 && size<=128){
-        add_node(alloc_from_ram(size),head,endnode);
+        add_node(alloc_from_ram(size),&head,&endnode);
     }
     else if(size>128 && size<=256){
-        add_node(alloc_from_ram(size),head,endnode);
+        add_node(alloc_from_ram(size),&head,&endnode);
     }
     else if(size>256 && size<=512){
-        add_node(alloc_from_ram(size),head,endnode);
+        add_node(alloc_from_ram(size),&head,&endnode);
     }
     else if(size>512 && size<=1024){
-        add_node(alloc_from_ram(size),head,endnode);
+        add_node(alloc_from_ram(size),&head,&endnode);
     }
     else if(size>1024 && size<=2048){
-        add_node(alloc_from_ram(size),head,endnode);
+        add_node(alloc_from_ram(size),&head,&endnode);
     }
     else if(size>2048 && size<=4080){
-        add_node(alloc_from_ram(size),head,endnode);
+        add_node(alloc_from_ram(size),&head,&endnode);
     }
     else{
         printf("Wrong input");
@@ -121,13 +121,12 @@ void *mymalloc(size_t size, struct node** head, struct node** endnode)
 
 int main()
 {
-    cout << "Hello world!" << endl;
     size_t a;
     scanf(a);
     printf(a);
     struct node *head  = NULL;
     struct node *endnode  = NULL;
-    mymalloc(a, head, endnode);
+    mymalloc(a, &head, &endnode);
     printf("done");
 
     return 0;
