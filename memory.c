@@ -20,50 +20,16 @@ struct node
   int *val;
 };
 
-void delete_node(int *i,struct node** h,struct node** e)
-  {
-    node* head = *h;
-    node* endnode = *e;
-    node *temp;
-    node *n = head;
-    while(n!=NULL)
-    {
-     if(n->val == i)
-     {
-        if(n==head)
-        {
-            head = head->next;
-        }
-        else if(n==endnode)
-        {
-            temp->next = NULL;
-            endnode = temp;
-        }
-        else
-        {
-            temp->next = n->next;
-        }
-        free(n);
-        break;
-    }
-    else
-    {
-        temp = n;
-        n = n->next;
-    }
-  }
-}
-
 void display(struct node** h)
  {
-   node* head = *h;
+   struct node* head = *h;
 
-   node *n = head;
+   struct node *n = head;
 
    while(n!=NULL)
    {
-    printf("%d\n",n->val);
-    n = n->next;
+    printf("%d\n",n.val);
+    n = n.next;
    }
  }
 
@@ -74,18 +40,18 @@ void add_node(int *i,struct node** h, struct node** e)
     if(*h!=NULL)
     {
         node *n = (struct node*)malloc(sizeof(node));
-        n->next  = NULL;
-        n->val = i;
+        n.next  = NULL;
+        n.val = i;
 
-        (*e)->next = n;
+        (*e).next = n;
         *e = n;
     }
     else
     {
         printf("heading\n");
         *h  = (struct node*)malloc(sizeof(node));
-        (*h)->next = NULL;
-        (*h)->val = i;
+        (*h).next = NULL;
+        (*h).val = i;
         *e = *h;
     }
 
