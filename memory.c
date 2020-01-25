@@ -14,11 +14,16 @@
 
 #define PAGE_SIZE 4096
 
+
+
 struct node
 {
   struct node *next;
   int *val;
 };
+
+struct node *head  = NULL;
+struct node *endnode  = NULL;
 
 void display(struct node** h)
  {
@@ -39,7 +44,7 @@ void add_node(int *i,struct node** h, struct node** e)
     printf("adding\n");
     if(*h!=NULL)
     {
-        struct node *n = (struct node*)malloc(sizeof(node));
+        *n = (struct node*)malloc(sizeof(struct node));
         n->next  = NULL;
         n->val = i;
 
@@ -49,7 +54,7 @@ void add_node(int *i,struct node** h, struct node** e)
     else
     {
         printf("heading\n");
-        struct node *h  = (struct node*)malloc(sizeof(node));
+        *h  = (struct node*)malloc(sizeof(struct node));
         (*h)->next = NULL;
         (*h)->val = i;
         *e = *h;
@@ -81,7 +86,7 @@ void myfree(void *ptr)
 	abort();
 }
 
-void mymalloc(size_t size, struct node** head, struct node** endnode)
+void mymalloc(size_t size)
 {
     if(size<=16){
         add_node(alloc_from_ram(size),&head,&endnode);
@@ -124,9 +129,7 @@ int main()
     size_t a;
     scanf(a);
     printf(a);
-    struct node *head  = NULL;
-    struct node *endnode  = NULL;
-    mymalloc(a, &head, &endnode);
+    mymalloc(a);
     printf("done");
 
     return 0;
