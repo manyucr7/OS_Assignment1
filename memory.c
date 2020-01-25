@@ -20,7 +20,7 @@ struct node
   int *val;
 };
 
-void delete_node(int i,node** h,node** e)
+void delete_node(int *i,struct node** h,struct node** e)
   {
     node* head = *h;
     node* endnode = *e;
@@ -54,7 +54,7 @@ void delete_node(int i,node** h,node** e)
   }
 }
 
-void display(node** h)
+void display(struct node** h)
  {
    node* head = *h;
 
@@ -68,7 +68,7 @@ void display(node** h)
  }
 
 
-void add_node(int *i,node** h,node** e)
+void add_node(int *i,struct node** h, struct node** e)
 {
     printf("adding\n");
     if(*h!=NULL)
@@ -115,7 +115,7 @@ void myfree(void *ptr)
 	abort();
 }
 
-void *mymalloc(size_t size, node** head, node** endnode)
+void *mymalloc(size_t size, struct node** head, struct node** endnode)
 {
     if(size<=16){
         add_node(alloc_from_ram(size),head,endnode);
@@ -147,6 +147,7 @@ void *mymalloc(size_t size, node** head, node** endnode)
     else{
         printf("Wrong input");
     }
+    printf("done add_node");
 	return NULL;
 }
 
@@ -156,10 +157,10 @@ int main()
 {
     cout << "Hello world!" << endl;
     size_t a;
-    cin>>a;
-    cout<<a;
-    node *head  = NULL;
-    node *endnode  = NULL;
+    scanf(a);
+    printf(a);
+    struct node *head  = NULL;
+    struct node *endnode  = NULL;
     mymalloc(a, head, endnode);
     printf("done");
 
