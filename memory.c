@@ -49,7 +49,7 @@ void add_node(int *i,struct node** h, struct node** e)
     else
     {
         printf("heading\n");
-        struct *h  = (struct node*)malloc(sizeof(node));
+        struct node *h  = (struct node*)malloc(sizeof(node));
         (*h)->next = NULL;
         (*h)->val = i;
         *e = *h;
@@ -81,7 +81,7 @@ void myfree(void *ptr)
 	abort();
 }
 
-void *mymalloc(size_t size, struct node** head, struct node** endnode)
+void mymalloc(size_t size, struct node** head, struct node** endnode)
 {
     if(size<=16){
         add_node(alloc_from_ram(size),&head,&endnode);
