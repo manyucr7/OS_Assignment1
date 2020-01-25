@@ -68,7 +68,7 @@ void display(node** h)
  }
 
 
-void add(int *i,node** h,node** e)
+void add_node(int *i,node** h,node** e)
 {
     printf("adding\n");
     if(*h!=NULL)
@@ -118,31 +118,31 @@ void myfree(void *ptr)
 void *mymalloc(size_t size, node** head, node** endnode)
 {
     if(size<=16){
-        one.add_node(alloc_from_ram(size),head,endnode);
+        add_node(alloc_from_ram(size),head,endnode);
     }
     else if(size>16 && size<=32){
-        second.add_node(alloc_from_ram(size),head,endnode);
+        add_node(alloc_from_ram(size),head,endnode);
     }
     else if(size>32 && size<=64){
-        third.add_node(alloc_from_ram(size),head,endnode);
+        add_node(alloc_from_ram(size),head,endnode);
     }
     else if(size>64 && size<=128){
-        fourth.add_node(alloc_from_ram(size),head,endnode);
+        add_node(alloc_from_ram(size),head,endnode);
     }
     else if(size>128 && size<=256){
-        fifth.add_node(alloc_from_ram(size),head,endnode);
+        add_node(alloc_from_ram(size),head,endnode);
     }
     else if(size>256 && size<=512){
-        sixth.add_node(alloc_from_ram(size),head,endnode);
+        add_node(alloc_from_ram(size),head,endnode);
     }
     else if(size>512 && size<=1024){
-        seventh.add_node(alloc_from_ram(size),head,endnode);
+        add_node(alloc_from_ram(size),head,endnode);
     }
     else if(size>1024 && size<=2048){
-        eighth.add_node(alloc_from_ram(size),head,endnode);
+        add_node(alloc_from_ram(size),head,endnode);
     }
     else if(size>2048 && size<=4080){
-        ninth.add_node(alloc_from_ram(size),head,endnode);
+        add_node(alloc_from_ram(size),head,endnode);
     }
     else{
         printf("Wrong input");
