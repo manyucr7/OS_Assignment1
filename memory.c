@@ -16,58 +16,81 @@
 
 struct node
 {
-    int *data;
-    node *next;
+  struct node *next;
+  int *val;
 };
 
-class linked_list
-{
-private:
-    node *head,*tail;
-public:
-    linked_list()
+void delete_node(int i,node** h,node** e)
+  {
+    node* head = *h;
+    node* endnode = *e;
+    node *temp;
+    node *n = head;
+    while(n!=NULL)
     {
-        head = NULL;
-        tail = NULL;
-    }
-
-    void add_node(int *n)
-    {
-        node *tmp = new node;
-        tmp->data = n;
-        tmp->next = NULL;
-
-        if(head == NULL)
+     if(n->val == i)
+     {
+        if(n==head)
         {
-            head = tmp;
-            tail = tmp;
+            head = head->next;
+        }
+        else if(n==endnode)
+        {
+            temp->next = NULL;
+            endnode = temp;
         }
         else
         {
-            tail->next = tmp;
-            tail = tail->next;
+            temp->next = n->next;
         }
+        free(n);
+        break;
+    }
+    else
+    {
+        temp = n;
+        n = n->next;
+    }
+  }
+}
+
+void display(node** h)
+ {
+   node* head = *h;
+
+   node *n = head;
+
+   while(n!=NULL)
+   {
+    printf("%d\n",n->val);
+    n = n->next;
+   }
+ }
+
+
+void add(int *i,node** h,node** e)
+{
+    printf("adding\n");
+    if(*h!=NULL)
+    {
+        node *n = (struct node*)malloc(sizeof(node));
+        n->next  = NULL;
+        n->val = i;
+
+        (*e)->next = n;
+        *e = n;
+    }
+    else
+    {
+        printf("heading\n");
+        *h  = (struct node*)malloc(sizeof(node));
+        (*h)->next = NULL;
+        (*h)->val = i;
+        *e = *h;
     }
 
-    void display() {
-        struct node* ptr;
-        ptr = head;
-        while (ptr != NULL) {
-            cout<< ptr->data <<" ";
-            ptr = ptr->next;
-      }
-    }
-};
+}
 
-linked_list one;
-linked_list second;
-linked_list third;
-linked_list fourth;
-linked_list fifth;
-linked_list sixth;
-linked_list seventh;
-linked_list eighth;
-linked_list ninth;
 
 static void *alloc_from_ram(size_t size)
 {
@@ -92,34 +115,34 @@ void myfree(void *ptr)
 	abort();
 }
 
-void *mymalloc(size_t size)
+void *mymalloc(size_t size, node** head, node** endnode)
 {
     if(size<=16){
-        one.add_node(alloc_from_ram(size));
+        one.add_node(alloc_from_ram(size),head,endnode);
     }
     else if(size>16 && size<=32){
-        second.add_node(alloc_from_ram(size));
+        second.add_node(alloc_from_ram(size),head,endnode);
     }
     else if(size>32 && size<=64){
-        third.add_node(alloc_from_ram(size));
+        third.add_node(alloc_from_ram(size),head,endnode);
     }
     else if(size>64 && size<=128){
-        fourth.add_node(alloc_from_ram(size));
+        fourth.add_node(alloc_from_ram(size),head,endnode);
     }
     else if(size>128 && size<=256){
-        fifth.add_node(alloc_from_ram(size));
+        fifth.add_node(alloc_from_ram(size),head,endnode);
     }
     else if(size>256 && size<=512){
-        sixth.add_node(alloc_from_ram(size));
+        sixth.add_node(alloc_from_ram(size),head,endnode);
     }
     else if(size>512 && size<=1024){
-        seventh.add_node(alloc_from_ram(size));
+        seventh.add_node(alloc_from_ram(size),head,endnode);
     }
     else if(size>1024 && size<=2048){
-        eighth.add_node(alloc_from_ram(size));
+        eighth.add_node(alloc_from_ram(size),head,endnode);
     }
     else if(size>2048 && size<=4080){
-        ninth.add_node(alloc_from_ram(size));
+        ninth.add_node(alloc_from_ram(size),head,endnode);
     }
     else{
         printf("Wrong input");
@@ -135,7 +158,9 @@ int main()
     size_t a;
     cin>>a;
     cout<<a;
-    mymalloc(a);
+    node *head  = NULL;
+    node *endnode  = NULL;
+    mymalloc(a, head, endnode);
     printf("done");
 
     return 0;
