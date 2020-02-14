@@ -22,8 +22,24 @@ struct node
   int *val;
 };
 
-struct node *head  = NULL;
-struct node *endnode  = NULL;
+struct node *head1  = NULL;
+struct node *endnode1  = NULL;
+struct node *head2  = NULL;
+struct node *endnode2  = NULL;
+struct node *head3  = NULL;
+struct node *endnode3  = NULL;
+struct node *head4  = NULL;
+struct node *endnode4  = NULL;
+struct node *head5  = NULL;
+struct node *endnode5  = NULL;
+struct node *head6  = NULL;
+struct node *endnode6  = NULL;
+struct node *head7  = NULL;
+struct node *endnode7  = NULL;
+struct node *head8  = NULL;
+struct node *endnode8  = NULL;
+struct node *head9  = NULL;
+struct node *endnode9  = NULL;
 
 void display(struct node** h)
  {
@@ -39,12 +55,12 @@ void display(struct node** h)
  }
 
 
-void add_node(int *i,struct node** h, struct node** e)
+void inserting_node(int *i,struct node** h, struct node** e)
 {
     printf("adding\n");
     if(*h!=NULL)
     {
-        *n = (struct node*)malloc(sizeof(struct node));
+        struct node *n = (struct node*)malloc(sizeof(struct node));
         n->next  = NULL;
         n->val = i;
 
@@ -86,39 +102,39 @@ void myfree(void *ptr)
 	abort();
 }
 
-void mymalloc(size_t size)
+void *mymalloc(size_t size)
 {
     if(size<=16){
-        add_node(alloc_from_ram(size),&head,&endnode);
+        inserting_node(alloc_from_ram(size),&head1,&endnode1);
     }
     else if(size>16 && size<=32){
-        add_node(alloc_from_ram(size),&head,&endnode);
+        inserting_node(alloc_from_ram(size),&head2,&endnode2);
     }
     else if(size>32 && size<=64){
-        add_node(alloc_from_ram(size),&head,&endnode);
+        inserting_node(alloc_from_ram(size),&head3,&endnode3);
     }
     else if(size>64 && size<=128){
-        add_node(alloc_from_ram(size),&head,&endnode);
+        inserting_node(alloc_from_ram(size),&head4,&endnode4);
     }
     else if(size>128 && size<=256){
-        add_node(alloc_from_ram(size),&head,&endnode);
+        inserting_node(alloc_from_ram(size),&head5,&endnode5);
     }
     else if(size>256 && size<=512){
-        add_node(alloc_from_ram(size),&head,&endnode);
+        inserting_node(alloc_from_ram(size),&head6,&endnode6);
     }
     else if(size>512 && size<=1024){
-        add_node(alloc_from_ram(size),&head,&endnode);
+        inserting_node(alloc_from_ram(size),&head7,&endnode7);
     }
     else if(size>1024 && size<=2048){
-        add_node(alloc_from_ram(size),&head,&endnode);
+        inserting_node(alloc_from_ram(size),&head8,&endnode8);
     }
     else if(size>2048 && size<=4080){
-        add_node(alloc_from_ram(size),&head,&endnode);
+        inserting_node(alloc_from_ram(size),&head9,&endnode9);
     }
     else{
         printf("Wrong input");
     }
-    printf("done add_node");
+    printf("done inserting_node");
 	return NULL;
 }
 
